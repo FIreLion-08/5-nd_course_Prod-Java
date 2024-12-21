@@ -1,11 +1,11 @@
 // 5.3 DOM 2. События на динамических элементах
 "use strict";
 
-const name_Input_Element = document.getElementById('name-input');
-const comment_Input_Element = document.getElementById('comment-input');
-const button_Element = document.getElementById('add-button');
-const list_Element = document.getElementById('list');
-const delete_Button_Element = document.getElementById('delete-button');
+const nameInputElement = document.getElementById('name-input');
+const commentInputElement = document.getElementById('comment-input');
+const buttonElement = document.getElementById('add-button');
+const listElement = document.getElementById('list');
+const deleteButtonElement = document.getElementById('delete-button');
 
 // Массив
 const commentsArray = [
@@ -15,7 +15,7 @@ const commentsArray = [
     comment: 'Это будет первый комментарий на этой странице',
     like: 3,
     userLike: false,
-    paint: ''
+    // paint: ''
   },
   {
     name: 'Варвара Н.',
@@ -53,6 +53,9 @@ const renderComments = () => {
     // if (commentsArray[index].paint) {
     //   paint = '-active-like'
     // }
+
+    // <button data-index='${index}' class="like-button ${item.paint ? '-active-like' : ''}"></button>
+
     return `
     <li class="comment">
           <div class="comment-header">
@@ -73,36 +76,36 @@ const renderComments = () => {
         </li>
     `})
     .join('');
-    list_Element.innerHTML = commentsHtml;
+    listElement.innerHTML = commentsHtml;
     likes();
 };
 renderComments();
 // Условие
-button_Element.disabled = true;
-name_Input_Element.addEventListener('input', () =>{
-  if (name_Input_Element.value === " " || comment_Input_Element.value === " ") {
-    button_Element.disabled = true;
+buttonElement.disabled = true;
+nameInputElement.addEventListener('input', () =>{
+  if (nameInputElement.value === " " || commentInputElement.value === " ") {
+    buttonElement.disabled = true;
     return;
   } else {
-    button_Element.disabled = false;
+    buttonElement.disabled = false;
   }
 })
 
 // Функция клика, валидация
-button_Element.addEventListener('click', () => {
-    name_Input_Element.classList.remove('error');
-    comment_Input_Element.classList.remove('error');
-    button_Element.classList.remove("disabled-button");
+buttonElement.addEventListener('click', () => {
+    nameInputElement.classList.remove('error');
+    commentInputElement.classList.remove('error');
+    buttonElement.classList.remove("disabled-button");
 
     // Удаление пробелов спереди и сзади в полях ввода
-    name_Input_Element.value = name_Input_Element.value.trim();
-    comment_Input_Element.value = comment_Input_Element.value.trim();
+    nameInputElement.value = nameInputElement.value.trim();
+    commentInputElement.value = commentInputElement.value.trim();
 
     // Проверка на пустые поля
-    if (name_Input_Element.value === "" || comment_Input_Element.value === "") {
-      name_Input_Element.classList.add('error');
-      comment_Input_Element.classList.add('error');
-      button_Element.classList.add("disabled-button");
+    if (nameInputElement.value === "" || commentInputElement.value === "") {
+      nameInputElement.classList.add('error');
+      commentInputElement.classList.add('error');
+      buttonElement.classList.add("disabled-button");
       return;
     }
 
@@ -116,13 +119,13 @@ button_Element.addEventListener('click', () => {
   date.getMinutes().toString().padStart(2, '0');
 
   commentsArray.push({
-      name: name_Input_Element.value
+      name: nameInputElement.value
             .replaceAll("&", "&amp;")
             .replaceAll("<", "&lt;")
             .replaceAll(">", "&gt;")
             .replaceAll('"', "&quot;"),
       date: formattedDate,
-      comment: comment_Input_Element.value
+      comment: commentInputElement.value
             .replaceAll("&", "&amp;")
             .replaceAll("<", "&lt;")
             .replaceAll(">", "&gt;")
@@ -132,20 +135,20 @@ button_Element.addEventListener('click', () => {
       paint: '',
   });
     renderComments();
-    name_Input_Element.value = '';
-    comment_Input_Element.value = '';
-    button_Element.disabled = true;
+    nameInputElement.value = '';
+    commentInputElement.value = '';
+    buttonElement.disabled = true;
 });
 
-delete_Button_Element.addEventListener('click', () =>{
-  const lastCommentIndex = list_Element.innerHTML.lastIndexOf( '<li class="comment">' );
+deleteButtonElement.addEventListener('click', () =>{
+  const lastCommentIndex = listElement.innerHTML.lastIndexOf( '<li class="comment">' );
   if (lastCommentIndex !== -1) {
-    list_Element.innerHTML = list_Element.innerHTML.substring( 0, lastCommentIndex );
+    listElement.innerHTML = listElement.innerHTML.substring( 0, lastCommentIndex );
   }
 });
 
 document.addEventListener('keyup', (event) =>{
   if (event.key === 'Enter') {
-    button_Element.click();
+    buttonElement.click();
   }
 });
