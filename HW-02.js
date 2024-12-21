@@ -23,7 +23,7 @@ const commentsArray = [
     comment: 'Мне нравится как оформлена эта страница! ❤',
     like: 75,
     userLike: true,
-    paint: '-active-like'
+    // paint: '-active-like'
   }
 ];
 
@@ -54,7 +54,7 @@ const renderComments = () => {
     //   paint = '-active-like'
     // }
 
-    // <button data-index='${index}' class="like-button ${item.paint ? '-active-like' : ''}"></button>
+    // <button data-index='${index}' class="like-button ${commentsArray[index].userLike ? '-active-like' : ''}"></button>
 
     return `
     <li class="comment">
@@ -70,7 +70,7 @@ const renderComments = () => {
           <div class="comment-footer">
             <div class="likes">
               <span class="likes-counter">${item.like}</span>
-              <button data-index='${index}' class="like-button ${item.paint}"></button>
+              <button data-index='${index}' class="like-button ${commentsArray[index].userLike ? '-active-like' : ''}"></button>
             </div>
           </div>
         </li>
