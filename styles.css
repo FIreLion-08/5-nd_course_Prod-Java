@@ -19,6 +19,8 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
+  /* word-break: break-all; */
+  white-space: pre-line;
 }
 
 .comment,
@@ -135,6 +137,22 @@ body {
 .add-form-button:hover {
   opacity: 0.9;
 }
+
+.add-text {
+	padding: 10px;
+	font-size: 18px;
+	font-family: Helvetica;
+	 width: 480px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 18px;
+
+  }
+  .quote{
+	background-color: aliceblue;
+	color:#202020;
+	font-size: 20px;
+ }
 
 .add-form-delete{
   margin-top: 24px;
