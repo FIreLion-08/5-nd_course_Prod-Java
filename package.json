@@ -1,0 +1,16 @@
+{
+  "name": "5-nd_course_prod-java",
+  "description": "https://glebkaf.github.io/webdev-dom-homework/",
+  "version": "1.0.0",
+  "main": "HW-04.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  }
+}
