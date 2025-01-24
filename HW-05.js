@@ -1,4 +1,4 @@
-// 5.6 Модульный JS и npm
+// Urok_05.08_API 1._GET,_POST,_DELETE
 'use strict'
 import replaceText from './modules/01_replaceText.js'
 import commentsArray from './modules/02_commentsArray.js'
