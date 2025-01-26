@@ -5,9 +5,6 @@ import likes from './03_likes.js'
 import handleEdit from './04_handleEdit.js'
 import handleSave from './05_handleSave.js'
 
-// const nameInputElement = document.getElementById("name-input");
-// const commentInputElement = document.getElementById("comment-input");
-// const buttonElement = document.getElementById("add-button");
 const listElement = document.getElementById('list')
 
 const renderComments = () => {

@@ -1,17 +1,15 @@
 // Urok_05.08_API 1._GET,_POST,_DELETE
 'use strict'
-// import replaceText from './modules/01_replaceText.js'
 import { updateCommentsArray } from './modules/02_commentsArray.js'
-// import likes from "./modules/03_likes.js";
 import renderComments from './modules/06_renderComments.js'
 import noButton from './modules/07_noButton.js'
 // import getFormattedDate from './modules/08_date.js'
 import deleteLastComment from './modules/09_deleteButton.js'
+import { fetchComments } from './modules/10_api.js'
 
 const nameInputElement = document.getElementById('name-input')
 const commentInputElement = document.getElementById('comment-input')
 const buttonElement = document.getElementById('add-button')
-// const listElement = document.getElementById("list");
 const deleteButtonElement = document.getElementById('delete-button')
 
 // Функция безопасности ввода данных (01_replaceText.js)
@@ -20,39 +18,15 @@ const deleteButtonElement = document.getElementById('delete-button')
 // export let commentsArray = []
 
 //HW_05.05
-// Берем данные из массива с помощью GET и загружаем на сервер
-const fetchPromise = fetch(
-    'https://wedev-api.sky.pro/api/v1/Dmitry-Avdoshkin/comments',
-    {
-        method: 'GET',
-    },
-)
-// Подписываемся на успешное завершение запроса с помощью then
-fetchPromise.then((response) => {
-    // Запускаем преобразовываем "сырые" данные от API в json формат
-    const jsonPromise = response
-    // Подписываемся на результат преобразования
-    jsonPromise
-        .json()
-        .then((responseData) => {
-            // приведение к нужному формату данных
-            const formatComments = responseData.comments.map((comment) => {
-                return {
-                    id: comment.id,
-                    name: comment.author.name,
-                    comment: comment.text,
-                    date: new Date().toLocaleString().slice(0, -3),
-                    like: comment.likes,
-                    user_Like: false,
-                }
-            })
-            console.log(formatComments)
-            // получили данные и рендерим их в приложении
-            updateCommentsArray(formatComments)
-            // renderComments()
-        })
-        .then(() => renderComments())
-})
+// Получение комментариев при загрузке (10_api.js)
+fetchComments()
+    .then((formatComments) => {
+        updateCommentsArray(formatComments) // Обновляем массив комментариев
+        renderComments() // Рендерим комментарии после обработки
+    })
+    .catch((error) => {
+        console.error('Ошибка при получении комментариев:', error)
+    })
 
 // Добавление и удаление лайков (03_likes.js)
 
@@ -62,11 +36,7 @@ fetchPromise.then((response) => {
 
 // Добавление комментариев (06_renderComments.js)
 
-// Инициализация рендеринга комментариев
-// renderComments()
-
 // Условие неактивной кнопки (07_noButton.js)
-
 // Инициализация неактивной кнопки
 noButton()
 
@@ -98,53 +68,15 @@ buttonElement.addEventListener('click', () => {
         }),
     }).then((response) => {
         response.json().then(() => {
-            // после получения данных, рендер их в приложении
-            // commentsArray.push({
-            //     name: replaceText(nameInputElement.value),
-            //     date: getFormattedDate(),
-            //     comment: replaceText(commentInputElement.value),
-            //     like: 0,
-            //     user_Like: false,
-            //     paint: '',
-            // })
-
-            const fetchPromise = fetch(
-                'https://wedev-api.sky.pro/api/v1/Dmitry-Avdoshkin/comments',
-                {
-                    method: 'GET',
-                },
-            )
-
-            fetchPromise.then((response) => {
-                // Запускаем преобразовываем "сырые" данные от API в json формат
-                const jsonPromise = response
-                // Подписываемся на результат преобразования
-                jsonPromise
-                    .json()
-                    .then((responseData) => {
-                        // приведение к нужному формату данных
-                        const formatComments = responseData.comments.map(
-                            (comment) => {
-                                return {
-                                    id: comment.id,
-                                    name: comment.author.name,
-                                    comment: comment.text,
-                                    date: new Date()
-                                        .toLocaleString()
-                                        .slice(0, -3),
-                                    like: comment.likes,
-                                    user_Like: false,
-                                }
-                            },
-                        )
-                        console.log(formatComments)
-                        // получили данные и рендерим их в приложении
-                        // renderComments()
-                        updateCommentsArray(formatComments)
-                    })
-                    .then(() => renderComments())
-            })
-
+            // Получение комментариев при загрузке (10_api.js)
+            fetchComments()
+                .then((formatComments) => {
+                    updateCommentsArray(formatComments) // Обновляем массив комментариев
+                    renderComments() // Рендерим комментарии после обработки
+                })
+                .catch((error) => {
+                    console.error('Ошибка при получении комментариев:', error)
+                })
             renderComments()
             nameInputElement.value = ''
             commentInputElement.value = ''
