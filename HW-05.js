@@ -66,23 +66,26 @@ buttonElement.addEventListener('click', () => {
             name: nameInputElement.value,
             text: commentInputElement.value,
         }),
-    }).then((response) => {
-        response.json().then(() => {
-            // Получение комментариев при загрузке (10_api.js)
-            fetchComments()
-                .then((formatComments) => {
-                    updateCommentsArray(formatComments) // Обновляем массив комментариев
-                    renderComments() // Рендерим комментарии после обработки
-                })
-                .catch((error) => {
-                    console.error('Ошибка при получении комментариев:', error)
-                })
-            renderComments()
-            nameInputElement.value = ''
-            commentInputElement.value = ''
-            buttonElement.disabled = true
-        })
     })
+        .then((response) => {
+            return response.json()
+        })
+        .then((json) => {
+            // Получение комментариев при загрузке (10_api.js)
+            return fetchComments()
+        })
+        .then((formatComments) => {
+            updateCommentsArray(formatComments) // Обновляем массив комментариев
+            renderComments() // Рендерим комментарии после обработки
+        })
+        .catch((error) => {
+            console.error('Ошибка при получении комментариев:', error)
+        })
+
+    renderComments()
+    nameInputElement.value = ''
+    commentInputElement.value = ''
+    buttonElement.disabled = true
 })
 
 // Удаление последнего комментария (09_deleteButton.js)
