@@ -1,13 +1,10 @@
 // Добавление комментариев
-
-import commentsArray from './02_commentsArray.js'
+import replaceText from './01_replaceText.js'
+import { commentsArray } from './02_commentsArray.js'
 import likes from './03_likes.js'
 import handleEdit from './04_handleEdit.js'
 import handleSave from './05_handleSave.js'
 
-// const nameInputElement = document.getElementById("name-input");
-// const commentInputElement = document.getElementById("comment-input");
-// const buttonElement = document.getElementById("add-button");
 const listElement = document.getElementById('list')
 
 const renderComments = () => {
@@ -16,12 +13,12 @@ const renderComments = () => {
             if (item.paint) {
                 return `<li class="comment">
             <div class="comment-header">
-              <div>${item.name}</div>
+              <div>${replaceText(item.name)}</div>
               <div>${item.date}</div>
             </div>
             <div class="comment-body">
               <div class="comment-text">
-                <textarea class="comment-input add-text" rows="4">${item.comment}</textarea>
+                <textarea class="comment-input add-text" rows="4">${replaceText(item.comment)}</textarea>
                 <button data-index='${index}' class="save-buttons add-form-button saving">Сохранить</button>
               </div>
             </div>
@@ -29,12 +26,12 @@ const renderComments = () => {
             } else {
                 return `<li class="comment" data-paint='${item.paint}'>
             <div class="comment-header">
-              <div class="comment-name">${item.name}</div>
+              <div class="comment-name">${replaceText(item.name)}</div>
                 <div>${item.date}</div>
               </div>
               <div class="comment-body">
                 <div class="comment-text">
-                  <span class="comment-content">${item.comment}</span>
+                  <span class="comment-content">${replaceText(item.comment)}</span>
                   <button data-index='${index}' class="edit-button add-form-button">Редактировать</button>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 // Сохранение отредактированного комментария
 
-import commentsArray from './02_commentsArray.js'
+import { commentsArray } from './02_commentsArray.js'
 import renderComments from './06_renderComments.js'
 
 const listElement = document.getElementById('list')
