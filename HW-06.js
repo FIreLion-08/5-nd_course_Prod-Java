@@ -6,14 +6,17 @@ import noButton from './modules/07_noButton.js'
 // import getFormattedDate from './modules/08_date.js'
 import deleteLastComment from './modules/09_deleteButton.js'
 import { fetchComments } from './modules/10_api.js'
+import { initCommentsLoader } from './modules/11_loaderDown.js'
 
 const nameInputElement = document.getElementById('name-input')
 const commentInputElement = document.getElementById('comment-input')
 const buttonElement = document.getElementById('add-button')
 const deleteButtonElement = document.getElementById('delete-button')
 
-// Функция безопасности ввода данных (01_replaceText.js)
+// hw_05.06_Лоадер загрузки приложения (11_.js)
+initCommentsLoader()
 
+// Функция безопасности ввода данных (01_replaceText.js)
 // // Массив комментариев (02_commentsArray.js)
 // export let commentsArray = []
 
@@ -55,7 +58,6 @@ buttonElement.addEventListener('click', () => {
         buttonElement.classList.add('disabled-button')
         return
     }
-
     // Установка формата даты ДД.ММ.ГГГГ ЧЧ:ММ (07_date.js)
 
     //HW_05.05
@@ -78,10 +80,16 @@ buttonElement.addEventListener('click', () => {
             updateCommentsArray(formatComments) // Обновляем массив комментариев
             renderComments() // Рендерим комментарии после обработки
         })
+        .then(() => {
+            buttonElement.disabled = true
+            buttonElement.textContent = 'Написать'
+            nameInputElement.value = ''
+            commentInputElement.value = ''
+        })
         .catch((error) => {
             console.error('Ошибка при получении комментариев:', error)
         })
-
+    buttonElement.innerHTML = 'Комментарий добавляется...'
     renderComments()
     nameInputElement.value = ''
     commentInputElement.value = ''
