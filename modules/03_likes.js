@@ -15,7 +15,7 @@ const likes = () => {
         el.addEventListener('click', (event) => {
             event.stopPropagation()
             commentsArray[index].userLike = !commentsArray[index].userLike
-            delay2(1000).then(() => {
+            delay2(100).then(() => {
                 commentsArray[index].userLike
                     ? commentsArray[index].like++
                     : commentsArray[index].like--
