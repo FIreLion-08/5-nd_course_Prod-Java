@@ -8,7 +8,6 @@ export function fetchComments() {
             if (!response.ok) {
                 throw new Error('Реакция сети была не в порядке')
             }
-            // eslint-disable-next-line prettier/prettier
             return response.json()
         })
         .then((responseData) => {
