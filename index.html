@@ -1,18 +1,18 @@
 <!doctype html>
 <html>
     <head>
-        <title>DZ_05.06_API_2._Цепочки_промисов</title>
+        <title>DZ_02.07_API_3._Обработка_ошибок</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="styles.css" />
     </head>
 
     <body>
-        <div class="container">
-            <div id="add-sign"></div>
-            <ul class="comments" id="list">
-                <!-- Список рендерится из Js -->
+        <div class="container" id="add-container">
+            <ul class="comments" id="comments">
+                <!--Список берется из JS-->
             </ul>
-            <div class="add-form">
+            <div id="loading"></div>
+            <div class="add-form" id="add-form">
                 <input
                     type="text"
                     class="add-form-name"
@@ -27,19 +27,12 @@
                     id="comment-input"
                 ></textarea>
                 <div class="add-form-row">
-                    <button id="add-button" class="add-form-button">
+                    <button class="add-form-button" id="add-button">
                         Написать
-                    </button>
-                    <button id="delete-button" class="add-form-delete">
-                        Удалить
                     </button>
                 </div>
             </div>
         </div>
     </body>
-    <script type="module" src="HW-06.js">
-        // Код писать здесь
-
-        console.log("It works!");
-    </script>
+    <script type="module" src="HW-07.js"></script>
 </html>
