@@ -24,6 +24,10 @@ fetchAndRenderComments(comments)
 buttonElement.addEventListener('click', () => {
     nameInputElement.style.backgroundColor = 'white'
     commentInputElement.style.backgroundColor = 'white'
+
+    nameInputElement.value = nameInputElement.value.trim()
+    commentInputElement.value = commentInputElement.value.trim()
+
     if (nameInputElement.value === '') {
         nameInputElement.style.backgroundColor = 'red'
         buttonElement.classList.add('disabled-button')
