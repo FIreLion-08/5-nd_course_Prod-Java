@@ -3,7 +3,7 @@ import { postComment } from './modules/05_api.js'
 import { fetchAndRenderComments } from './modules/01_render.js'
 // import { renderComments } from './/modules/render.js'
 // import { initDeleteButtonsLisners } from './modules/03_delete.js'
-import { delay } from './modules/06_delay.js'
+// import { delay } from './modules/06_delay.js'
 
 const buttonElement = document.getElementById('add-button')
 const nameInputElement = document.getElementById('name-input')
@@ -41,7 +41,9 @@ buttonElement.addEventListener('click', () => {
     buttonElement.disabled = true
     buttonElement.textContent = 'Комментарий добавляется...'
 
-    const handlePostClick = () => {
+    const maxRetries = 3 // Максимальное количество попыток
+
+    const handlePostClick = (attempt = 1) => {
         // API (05_api.js)
         postComment(nameInputElement.value, commentInputElement.value)
             .then((response) => {
@@ -72,19 +74,42 @@ buttonElement.addEventListener('click', () => {
                     alert('Имя и комментарий должны быть не короче 3 символов')
                 }
                 if (error.message === 'Сервер упал') {
-                    //  Пробуем снова, если сервер сломался
-                    alert('Кажется, что-то пошло не так, попробуй позже')
-                    delay(1000).then(() => {
-                        handlePostClick()
-                    })
+                    if (attempt < maxRetries) {
+                        alert('Сервер не отвечает, пробуем снова...')
+                        setTimeout(() => {
+                            handlePostClick(attempt + 1) // Повторяем попытку
+                        }, 1000) // Задержка между попытками 1 секунда
+                    } else {
+                        //  Пробуем снова, если сервер сломался
+                        alert('Кажется, что-то пошло не так, попробуй позже')
+                    }
                 }
                 if (error.message === 'Failed to fetch') {
                     alert('Кажется,сломался интернет, попробуй позже')
                 }
+
+                fetchAndRenderCommentsError()
                 // TODO: Отправлять в систему сбора ошибок
                 console.warn(error)
             })
     }
+
+    const fetchAndRenderCommentsError = (attempt = 1) => {
+        fetchAndRenderComments(comments).catch((error) => {
+            if (attempt < maxRetries) {
+                alert('Не удалось получить комментарии, пробуем снова...')
+                setTimeout(() => {
+                    fetchAndRenderCommentsError(attempt + 1)
+                }, 1000) // Задержка между попытками 1 секунда
+            } else {
+                alert(
+                    'Не удалось получить комментарии. Проверьте соединение с интернетом или попробуйте позже.',
+                )
+            }
+            console.warn(error)
+        })
+    }
+
     handlePostClick()
     // renderComments(comments);
     // initDeleteButtonsLisners(comments);
