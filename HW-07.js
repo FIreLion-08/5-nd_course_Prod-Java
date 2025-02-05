@@ -55,8 +55,12 @@ buttonElement.addEventListener('click', () => {
                     throw new Error('Неверный запрос')
                 }
                 if (response.status === 500) {
+                    alert(
+                        'Сервер временно недоступен. Пожалуйста, попробуйте позже.',
+                    )
                     throw new Error('Сервер упал')
                 }
+                throw new Error('Неизвестная ошибка') // Обработка других ошибок
             })
             .then((responseData) => {
                 return fetchAndRenderComments(comments)
