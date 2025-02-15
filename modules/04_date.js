@@ -1,4 +1,3 @@
-// Установка формата даты ДД.ММ.ГГГГ ЧЧ:ММ
 export const formatDateTime = () => {
     const currentDate = new Date()
     const day = String(currentDate.getDate()).padStart(2, '0')
