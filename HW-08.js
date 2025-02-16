@@ -41,7 +41,7 @@ export const fetchAndRenderComments = (comments) => {
                     date: formatDateTime(comment.date),
                     text: comment.text,
                     likes: comment.likes,
-                    isLiked: comment.isLikedlikes,
+                    isLiked: comment.isLiked,
                 }
             })
             comments = appComments
