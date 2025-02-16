@@ -28,10 +28,10 @@ export const renderComments = (comments) => {
                     }" data-id="${comment.id}">Удалить</button>
                     <div class="likes"><span class="likes-counter">${comment.likes}</span>
                         <button class="${
-                            comment.isLike
-                                ? 'like-button active-like'
+                            comment.isLiked
+                                ? 'like-button active-like '
                                 : 'like-button'
-                        } " data-id="${comment.id}" ></button>
+                        } "data-id="${comment.id}" ></button>
                     </div>
                 </div>
              </li>`
@@ -188,7 +188,7 @@ export const renderComments = (comments) => {
                 })
             }
 
-            initDeleteButtonLisners(comments)
+            // initDeleteButtonLisners(comments)
             handlePostClick()
             renderComments(comments)
         })

@@ -1,6 +1,6 @@
 import { registration } from './05_api.js'
 import { renderLogin } from './09_renderLogin.js'
-import { fetchAndRenderComments } from '../HW-08.js'
+// import { fetchAndRenderComments } from '../HW-08.js'
 
 export const registrationLogin = () => {
     const appElement = document.getElementById('app')
@@ -39,10 +39,7 @@ export const registrationLogin = () => {
         if (
             loginInputElement.value.trim() === '' ||
             namedInputElement.value.trim() === '' ||
-            passwordInputElement.value.trim() === '' ||
-            loginInputElement.value.trim() === ' ' ||
-            namedInputElement.value.trim() === ' ' ||
-            passwordInputElement.value.trim() === ' '
+            passwordInputElement.value.trim() === ''
         ) {
             namedInputElement.style.backgroundColor = 'pink'
             passwordInputElement.style.backgroundColor = 'pink'
@@ -55,10 +52,10 @@ export const registrationLogin = () => {
             name: namedInputElement.value.trim(),
             password: passwordInputElement.value.trim(),
         })
-            .then((responseData) => {
-                return fetchAndRenderComments(comments)
-            })
-            .then((responseData) => {
+            // .then(() => {
+            //     return fetchAndRenderComments(comments)
+            // })
+            .then(() => {
                 return renderLogin()
             })
             .catch((error) => {
