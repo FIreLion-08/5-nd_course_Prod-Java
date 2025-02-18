@@ -1,15 +1,19 @@
-//Кнопка удаления
-import { renderComments } from './01_render.js'
-export const initDeleteButtonsLisners = (comments) => {
-    const deleteButtonsElements = document.querySelectorAll(
+import { deleteComment } from './05_api.js'
+import { fetchAndRenderComments } from '../HW-08.js'
+
+export const initDeleteButtonLisners = (comments) => {
+    // deleteButtonElements.disabled = true;
+    const deleteButtonElements = document.querySelectorAll(
         '.delete-form-button',
     )
-    for (const deleteButtonsElement of deleteButtonsElements) {
-        deleteButtonsElement.addEventListener('click', (event) => {
+    for (const deleteButtonElement of deleteButtonElements) {
+        //
+        deleteButtonElement.addEventListener('click', (event) => {
             event.stopPropagation()
-            const index = deleteButtonsElement.dataset.index
-            comments.splice(index, 1)
-            renderComments(comments)
+            const id = deleteButtonElement.dataset.id
+            deleteComment({ id }).then(() => {
+                fetchAndRenderComments(comments)
+            })
         })
     }
 }
