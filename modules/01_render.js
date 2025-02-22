@@ -1,9 +1,9 @@
-import { renderLogin } from './09_renderLogin.js'
-import { initLikesListeners } from './02_likes.js'
-import { initDeleteButtonLisners } from './03_delete.js'
-import { postComment } from './05_api.js'
-import { fetchAndRenderComments, user } from '../HW-08.js'
-import { sanitizeHtml } from './07_sanitizeHtml.js'
+import { renderLogin } from './09_renderLogin'
+import { initLikesListeners } from './02_likes'
+import { initDeleteButtonLisners } from './03_delete'
+import { postComment } from './05_api'
+import { fetchAndRenderComments, user } from '../HW-09'
+import { sanitizeHtml } from './07_sanitizeHtml'
 
 // Добавление комментариев
 export const renderComments = (comments) => {

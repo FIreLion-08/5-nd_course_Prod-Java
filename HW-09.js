@@ -1,14 +1,15 @@
 //use strict";
-import { getComments } from './modules/05_api.js'
-import { formatDateTime } from './modules/04_date.js'
-import { renderComments } from './modules/01_render.js'
-import { setToken } from './modules/05_api.js'
+import { getComments } from './modules/05_api'
+// import { formatDateTime } from './modules/04_date'
+import { format } from 'date-fns'
+import { renderComments } from './modules/01_render'
+import { setToken } from './modules/05_api'
 // import { sanitizeHtml } from './modules/07_sanitizeHtml.js'
 import {
     // getUserFromLocalStorage,
     saveUserToLocalStorage,
     removeUserFromLocalStorage,
-} from './modules/08_helpers.js'
+} from './modules/08_helpers'
 
 // Запрос двнных в API на комментарий
 let comments = []
@@ -38,7 +39,8 @@ export const fetchAndRenderComments = (comments) => {
                 return {
                     id: comment.id,
                     name: comment.author.name,
-                    date: formatDateTime(comment.date),
+                    // date: formatDateTime(comment.date),
+                    date: format(comment.date, 'dd.MM.yyyy hh:mm'),
                     text: comment.text,
                     likes: comment.likes,
                     isLiked: comment.isLiked,
