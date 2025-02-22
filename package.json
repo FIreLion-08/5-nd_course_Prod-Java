@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "HW-09.js",
   "scripts": {
-    "dev": "webpack --mode development --watch"
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
