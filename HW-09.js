@@ -1,6 +1,7 @@
 //use strict";
 import { getComments } from './modules/05_api'
-import { formatDateTime } from './modules/04_date'
+// import { formatDateTime } from './modules/04_date'
+import { format } from 'date-fns'
 import { renderComments } from './modules/01_render'
 import { setToken } from './modules/05_api'
 // import { sanitizeHtml } from './modules/07_sanitizeHtml.js'
@@ -38,7 +39,8 @@ export const fetchAndRenderComments = (comments) => {
                 return {
                     id: comment.id,
                     name: comment.author.name,
-                    date: formatDateTime(comment.date),
+                    // date: formatDateTime(comment.date),
+                    date: format(comment.date, 'dd.MM.yyyy hh:mm'),
                     text: comment.text,
                     likes: comment.likes,
                     isLiked: comment.isLiked,
