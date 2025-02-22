@@ -1,6 +1,6 @@
-import { login, setToken } from './05_api.js'
-import { fetchAndRenderComments, setUser } from '../HW-09.js'
-import { registrationLogin } from './10_renderRegistration.js'
+import { login, setToken } from './05_api'
+import { fetchAndRenderComments, setUser } from '../HW-09'
+import { registrationLogin } from './10_renderRegistration'
 
 export const renderLogin = () => {
     const appElement = document.getElementById('app')

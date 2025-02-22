@@ -1,4 +1,4 @@
-import { user } from '../HW-09.js'
+import { user } from '../HW-09'
 
 const commentsUrl = 'https://wedev-api.sky.pro/api/v2/Dmitry-Avdoshkin/comments'
 

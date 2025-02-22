@@ -1,5 +1,5 @@
-import { likeComment } from './05_api.js'
-import { fetchAndRenderComments, user } from '../HW-09.js'
+import { likeComment } from './05_api'
+import { fetchAndRenderComments, user } from '../HW-09'
 
 export const initLikesListeners = (comments) => {
     for (const commentElement of document.querySelectorAll('.like-button')) {
