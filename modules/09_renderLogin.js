@@ -1,5 +1,5 @@
 import { login, setToken } from './05_api.js'
-import { fetchAndRenderComments, setUser } from '../HW-08.js'
+import { fetchAndRenderComments, setUser } from '../HW-09.js'
 import { registrationLogin } from './10_renderRegistration.js'
 
 export const renderLogin = () => {

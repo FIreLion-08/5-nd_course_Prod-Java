@@ -2,7 +2,7 @@ import { renderLogin } from './09_renderLogin.js'
 import { initLikesListeners } from './02_likes.js'
 import { initDeleteButtonLisners } from './03_delete.js'
 import { postComment } from './05_api.js'
-import { fetchAndRenderComments, user } from '../HW-08.js'
+import { fetchAndRenderComments, user } from '../HW-09.js'
 import { sanitizeHtml } from './07_sanitizeHtml.js'
 
 // Добавление комментариев
